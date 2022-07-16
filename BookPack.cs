@@ -13,7 +13,7 @@
             Books = books;
             if (books != null)
             {
-                Height = books.Sum(b => b.Height);
+                Height = books.Sum(b => b.BookProperties.Height);
             }
         }
     }

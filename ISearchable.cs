@@ -5,6 +5,6 @@
     /// </summary>
     internal interface ISearchable
     {
-        public Content SearchInContent(string searchString);
+        public Content SearchByString(string searchString);
     }
 }

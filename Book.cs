@@ -1,32 +1,35 @@
 ﻿namespace BooksTestTask
 {
     /// <summary>
-    /// Класс книги содержащий в себе расширенные
-    /// свойства(присущие не каждой книге)
-    /// Также реализован вариант поиска по контенту в книге
+    /// Класс книги содержащий в себе  свойства присущие  книге.
+    /// Также реализован вариант поиска по контенту.
+    /// За контент отвечает отдельный класс, на данный момент просто содержащий лист строк.
     /// </summary>
-    internal class Book: AbstractBook, IProperties, ISearchable
+    internal class Book: ISearchable
     {
+        public Guid Id { get; }
+        public string Title { get; }
+        public Content BookContent { get; }
+        public int PageCount { get; }
+        public BookStatus CurrentBookStatus { get; set; }
+        public IProperties BookProperties { get; set; }
         public string Description { get; set; }
         public List<Author> Authors { get; set; }
-        public BookStatus BookStatus { get; set; }
-        public float Width { get; set; }
-        public float Height { get; set; }
-        public float Length { get; set; }
-        public float Mass { get; set; }
-        public float Price { get; set; }
 
-        public Book(Guid id, string title, Content content, int pageCount, string description) 
-            : base(id, title, content, pageCount)
+        public Book(Guid id, string title, Content content, int pageCount)
         {
-            Description = description;
+            Id = id;
+            PageCount = pageCount;
+            Description = "";
+            Title = title;
+            BookContent = content;
             Authors = new List<Author>();
-            BookStatus = BookStatus.Good;
+            CurrentBookStatus = BookStatus.Good;
         }
         
-        public Content SearchInContent(string searchString)
+        public Content SearchByString(string searchString)
         {
-            return new Content(Content.CurrentContent.Where(c => c.Contains(searchString)).ToList());
+            return new Content(BookContent.CurrentContent.Where(c => c.Contains(searchString)).ToList());
         }
     }
 }

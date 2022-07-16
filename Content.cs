@@ -1,7 +1,7 @@
 ﻿namespace BooksTestTask
 {
     /// <summary>
-    /// Класс описывающий контент книги
+    /// Класс описывающий контент книги.
     /// Сейчас это просто лист строк.
     /// </summary>
     internal class Content
@@ -12,6 +12,5 @@
         {
             CurrentContent = currentContent;
         }
-
     }
 }
